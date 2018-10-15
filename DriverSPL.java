@@ -6,6 +6,7 @@ class DriverSPL {
 		System.out.println("Choose input:");
 		System.out.println("1. Keyboard");
 		System.out.println("2. Text file");
+		System.out.print("What is your choice? ");
 		byte input=0;
 		while (input != 1 && input != 2) {
 			input = 0;
