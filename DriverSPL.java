@@ -11,7 +11,7 @@ class DriverSPL {
 			System.out.print('~');
 
 			try {
-				Thread.sleep(100);
+				Thread.sleep(50);
 			} catch(Exception e) {
 				System.out.println(e);
 				Thread.currentThread().interrupt();
@@ -19,20 +19,44 @@ class DriverSPL {
 		}
 		System.out.println();
 
+		// Choosing input option
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose input:");
 		System.out.println("1. Keyboard");
 		System.out.println("2. Text file");
-		System.out.print("Enter your choice: ");
 		byte input=0;
-		while (input != 1 && input != 2) {
-			input = 0;
-			try {
-				input = in.nextByte();
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+		System.out.print("Enter your choice: ");
+
+		while (!in.hasNextByte()) {
+			System.out.println();
+			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
+			in.next();
+			System.out.println();
+			System.out.print("Enter your choice: ");
 		}
+
+		input = in.nextByte();
+
+		while (input!=1 && input!=2) {
+			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
+			System.out.print("Enter your choice: ");
+
+			while (!in.hasNextByte()) {
+				System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
+				in.next();
+				System.out.print("Enter your choice: ");
+			}
+
+			input = in.nextByte();
+		}
+		// while (input != 1 && input != 2) {
+		// 	input = 0;
+		// 	try {
+		// 		input = in.nextByte();
+		// 	} catch (Exception e) {
+		// 		System.out.println(e);
+		// 	}
+		// }
 		if (input == 1) {
 			System.out.println("Input from keyboard:)");
 		} else System.out.println("Input from text file;)");
