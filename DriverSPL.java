@@ -38,12 +38,16 @@ class DriverSPL {
 		input = in.nextByte();
 
 		while (input!=1 && input!=2) {
+			System.out.println();
 			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
+			System.out.println();
 			System.out.print("Enter your choice: ");
 
 			while (!in.hasNextByte()) {
+				System.out.println();
 				System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
 				in.next();
+				System.out.println();
 				System.out.print("Enter your choice: ");
 			}
 
