@@ -24,9 +24,35 @@ class DriverMatAug {
 		System.out.println("1. Linear Equation System");
 		System.out.println("2. Polynomial Interpolation");
 		System.out.println("3. Exit");
-		System.out.print("Enter the menu number (1, 2, or 3): ");
+		System.out.print("Select menu: ");
 		Scanner in = new Scanner(System.in);
-		
+
+		while (!in.hasNextByte()) {
+			System.out.println();
+			System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");				
+			in.next();
+			System.out.println();
+			System.out.print("Select menu: ");
+		}
+
+		byte menu = in.nextByte();
+
+		while (input!=1 && input!=2) {
+			System.out.println();
+			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
+			System.out.println();
+			System.out.print("Enter your choice: ");
+
+			while (!in.hasNextByte()) {
+				System.out.println();
+				System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
+				in.next();
+				System.out.println();
+				System.out.print("Enter your choice: ");
+			}
+
+			input = in.nextByte();
+		}
 
 		/*
 		System.out.println("Enter the size of matrix augmented:")
