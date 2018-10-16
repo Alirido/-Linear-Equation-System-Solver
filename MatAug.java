@@ -14,10 +14,6 @@ public class MatAug { // Matrix Augmented
 	}
 
 	public void fillWithSPL() {
-		System.out.println("Enter the size of matrix augmented:")
-		Scanner in = new Scanner(System.in);
-		int m=in.nextInt(),n=in.nextInt();
-		System.out.println("Enter the matrix augmented:");
 		for (int i=0; i<m; i++) {
 			for (int j=0; j<=n; j++) {
 				this.mt[i][j] = in.nextDouble();
@@ -32,6 +28,10 @@ public class MatAug { // Matrix Augmented
 	}
 
 	public void fillWithPI() { // Polynomial Interpolation
+		Scanner in = new Scanner(System.in);
+		System.out.print("Enter the number of points: ");
+		int n = in.nextInt();
+		System.out.println("Enter " + n + " points: ");
 
 	}
 

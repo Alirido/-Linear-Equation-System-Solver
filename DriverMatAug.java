@@ -19,14 +19,24 @@ class DriverMatAug {
 		}
 		System.out.println();
 
-
-		
-		// Choosing input option
+		// MENU 
+		System.out.println("MENU");
+		System.out.println("1. Linear Equation System");
+		System.out.println("2. Polynomial Interpolation");
+		System.out.println("3. Exit");
+		System.out.print("Enter the menu number (1, 2, or 3): ");
 		Scanner in = new Scanner(System.in);
+		
+
+		/*
+		System.out.println("Enter the size of matrix augmented:")
+		int m=in.nextInt(),n=in.nextInt();
+		System.out.println("Enter the matrix augmented:");
+		*/
+		// Choosing input option
 		System.out.println("Choose input:");
 		System.out.println("1. Keyboard");
 		System.out.println("2. Text file");
-		byte input=0;
 		System.out.print("Enter your choice: ");
 
 		while (!in.hasNextByte()) {
@@ -37,7 +47,7 @@ class DriverMatAug {
 			System.out.print("Enter your choice: ");
 		}
 
-		input = in.nextByte();
+		byte input = in.nextByte();
 
 		while (input!=1 && input!=2) {
 			System.out.println();
