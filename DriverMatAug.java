@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.*;
 
 class DriverMatAug {
 	public static void main(String[] args) {
@@ -59,7 +60,18 @@ class DriverMatAug {
 		} else if (menu==2) {
 
 		} else {
-			
+			System.out.print("Exit");
+			for (int i=0; i<5; i++) {
+				System.out.print('.');
+
+				try {
+					Thread.sleep(150);
+				} catch(Exception e) {
+					System.out.println(e);
+					Thread.currentThread().interrupt();
+				}
+			}
+			System.exit(0);
 		}
 
 		/*
