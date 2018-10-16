@@ -37,11 +37,11 @@ class DriverMatAug {
 
 		byte menu = in.nextByte();
 
-		while (input!=1 && input!=2) {
+		while (menu!=1 && menu!=2 && menu!=3) {
 			System.out.println();
 			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
 			System.out.println();
-			System.out.print("Enter your choice: ");
+			System.out.print("Selext menu: ");
 
 			while (!in.hasNextByte()) {
 				System.out.println();
@@ -51,7 +51,15 @@ class DriverMatAug {
 				System.out.print("Enter your choice: ");
 			}
 
-			input = in.nextByte();
+			menu = in.nextByte();
+		}
+
+		if (menu==1) {
+
+		} else if (menu==2) {
+
+		} else {
+			
 		}
 
 		/*
