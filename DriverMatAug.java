@@ -12,7 +12,7 @@ class DriverMatAug {
 			System.out.print('~');
 
 			try {
-				Thread.sleep(50);
+				Thread.sleep(40);
 			} catch(Exception e) {
 				System.out.println(e);
 				Thread.currentThread().interrupt();
@@ -40,13 +40,13 @@ class DriverMatAug {
 
 		while (menu!=1 && menu!=2 && menu!=3) {
 			System.out.println();
-			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
+			System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");
 			System.out.println();
 			System.out.print("Selext menu: ");
 
 			while (!in.hasNextByte()) {
 				System.out.println();
-				System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
+				System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");				
 				in.next();
 				System.out.println();
 				System.out.print("Enter your choice: ");
@@ -60,17 +60,26 @@ class DriverMatAug {
 		} else if (menu==2) {
 
 		} else {
-			System.out.print("Exit");
-			for (int i=0; i<5; i++) {
-				System.out.print('.');
+			System.out.println();
+			for (int i=0; i<14; i++) {
+				if (i==0)
+					System.out.print('E');
+				else if (i==1)
+					System.out.print('X');
+				else if (i==2)
+					System.out.print('I');
+				else if (i==3)
+					System.out.print('T');
+				else System.out.print('.');
 
 				try {
-					Thread.sleep(150);
+					Thread.sleep(100);
 				} catch(Exception e) {
 					System.out.println(e);
 					Thread.currentThread().interrupt();
 				}
 			}
+			System.out.println();
 			System.exit(0);
 		}
 
