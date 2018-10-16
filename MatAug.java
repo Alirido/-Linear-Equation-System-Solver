@@ -13,13 +13,19 @@ public class MatAug { // Matrix Augmented
 		mt = new double[n][n];
 	}
 
-	public void fillMatrix() {
+	public void fillWithSPL() {
 
 	}
 
-	public void fillMatrixFromFile() {
-		
+	public void fillWithSPLFile() {
+
 	}
 
-	public void setPIFromFile(int )
+	public void fillWithPI() { // Polynomial Interpolation
+
+	}
+
+	public void fillWithPIFile() { // Polynomial Interpolation
+
+	}
 }
