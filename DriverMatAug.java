@@ -19,6 +19,8 @@ class DriverMatAug {
 		}
 		System.out.println();
 
+
+		
 		// Choosing input option
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose input:");
