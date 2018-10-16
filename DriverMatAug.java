@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class DriverSPL {
+class DriverMatAug {
 	public static void main(String[] args) {
 
 		// Loading segment
@@ -63,6 +63,8 @@ class DriverSPL {
 		// }
 		if (input == 1) {
 			System.out.println("Input from keyboard:)");
+
+			
 		} else System.out.println("Input from text file;)");
 
 		in.close();
