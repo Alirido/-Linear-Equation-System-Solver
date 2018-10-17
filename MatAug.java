@@ -23,7 +23,7 @@ public class MatAug { // Matrix Augmented
 		}
 
 		System.out.println("Matrix augmented is successfully created!");
-		in.close();
+		// in.close();
 	}
 
 	public void fillWithSPLFile() {
@@ -41,7 +41,7 @@ public class MatAug { // Matrix Augmented
 		}
 
 		System.out.println("Matrix augmented is successfully created!");
-		in.close();
+		// in.close();
 	}
 
 	public void fillWithPIFile() { // Polynomial Interpolation

@@ -38,7 +38,7 @@ public class Option {
 			menu = in.nextByte();
 		}
 
-		in.close();
+		// in.close();
 		return menu;
 	}
 
@@ -77,7 +77,7 @@ public class Option {
 			input = in.nextByte();
 		}
 
-		in.close();
+		// in.close();
 		return input;
 	}
 
@@ -86,8 +86,7 @@ public class Option {
 		System.out.println("Method Option");
 		System.out.println("1. Gauss Elimination");
 		System.out.println("2. Gauss-Jordan Elimination");
-		System.out.println("Select method: ");
-
+		System.out.print("Select method: ");
 		Scanner in = new Scanner(System.in);
 
 		while (!in.hasNextByte()) {
@@ -117,7 +116,7 @@ public class Option {
 			method = in.nextByte();
 		}
 
-		in.close();
+		// in.close();
 		return method;
 	}
 }
