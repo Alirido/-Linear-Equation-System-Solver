@@ -14,7 +14,6 @@ public class MatAug { // Matrix Augmented
 		return mt[i][j];
 	}
 
-
 	public void fillUsingSPL(int m, int n) {
 		Scanner in = new Scanner(System.in);
 		for (int i=0; i<m; i++) {
@@ -31,12 +30,18 @@ public class MatAug { // Matrix Augmented
 
 	}
 
-	public void fillWithPI() { // Polynomial Interpolation
+	public void fillUsingPI(int n) { // Polynomial Interpolation
 		Scanner in = new Scanner(System.in);
-		System.out.print("Enter the number of points: ");
-		int n = in.nextInt();
-		System.out.println("Enter " + n + " points: ");
+		for (int i=0; i<n; i++) {
+			double x = in.nextDouble(), y = in.nextDouble();
+			this.mt[i][0] = 1; this.mt[i][n+1]=y;
+			for (int j=1; j<=n; j++) {
+				this.mt[i][j] = this.mt[i][j-1]*x;
+			}
+		}
 
+		System.out.println("Matrix augmented is successfully created!");
+		in.close();
 	}
 
 	public void fillWithPIFile() { // Polynomial Interpolation
@@ -46,6 +51,6 @@ public class MatAug { // Matrix Augmented
 
 
 	public void runGaussElimination() {
-		
+
 	}
 }

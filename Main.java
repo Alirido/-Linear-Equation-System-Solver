@@ -126,7 +126,13 @@ public class Main {
 			}
 
 		} else if (menu==2) {
-			// byte input = chooseInput();
+			byte input = op.chooseInput();
+
+			if (input == 1) {
+				int n = in.nextInt();
+				MatAug mt = new MatAug(n,n+1);
+				mt.fillUsingPI(n);
+			}
 
 		} else {
 			System.out.println();
