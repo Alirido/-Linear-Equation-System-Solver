@@ -170,17 +170,6 @@ public class Main {
 			System.exit(0);
 		}
 
-		/*
-		System.out.println("Enter the size of matrix augmented:")
-		int m=in.nextInt(),n=in.nextInt();
-		System.out.println("Enter the matrix augmented:");
-		*/
-
-		// if (input == 1) {
-		// 	System.out.println("Input from keyboard:)");
-			
-		// } else System.out.println("Input from text file;)");
-
-		// in.close();
+		in.close();
 	}
 }
