@@ -53,4 +53,8 @@ public class MatAug { // Matrix Augmented
 	public void runGaussElimination() {
 
 	}
+
+	public void runGaussJordanElimination() {
+		
+	}
 }

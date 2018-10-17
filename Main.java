@@ -105,6 +105,7 @@ public class Main {
 		byte menu = op.chooseMenu();
 		System.out.println();
 
+		Scanner in = new Scanner(System.in);
 		if (menu==1) {
 			byte input = op.chooseInput();
 
@@ -119,10 +120,11 @@ public class Main {
 				if (method == 1) {
 					mt.runGaussElimination();
 				} else {
-					mt.runGauseeJordanElimination();
+					mt.runGaussJordanElimination();
 				}
 			} else {
 				// Input From file
+				System.out.println("Is there something wrong?");
 			}
 
 		} else if (menu==2) {
