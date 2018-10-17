@@ -2,6 +2,11 @@ import java.util.Scanner;
 import java.lang.*;
 
 class DriverMatAug {
+
+	public void chooseInput() {
+		
+	}
+
 	public static void main(String[] args) {
 
 		// Loading segment
@@ -42,7 +47,7 @@ class DriverMatAug {
 			System.out.println();
 			System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");
 			System.out.println();
-			System.out.print("Selext menu: ");
+			System.out.print("Select menu: ");
 
 			while (!in.hasNextByte()) {
 				System.out.println();
@@ -56,7 +61,7 @@ class DriverMatAug {
 		}
 
 		if (menu==1) {
-
+			chooseInput();
 		} else if (menu==2) {
 
 		} else {
