@@ -42,4 +42,10 @@ public class MatAug { // Matrix Augmented
 	public void fillWithPIFile() { // Polynomial Interpolation
 
 	}
+
+
+
+	public void runGaussElimination() {
+		
+	}
 }

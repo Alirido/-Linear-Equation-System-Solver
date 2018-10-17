@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.lang.*;
 
-public class DriverMatAug {
+public class Main {
 
 	// public byte chooseMenu() {
 	// 	// MENU 
@@ -100,86 +100,26 @@ public class DriverMatAug {
 		}
 		System.out.println();
 
-		// byte menu = this.chooseMenu();
-		// MENU 
-		System.out.println("MENU");
-		System.out.println("1. Linear Equation System");
-		System.out.println("2. Polynomial Interpolation");
-		System.out.println("3. Exit");
-		System.out.print("Select menu: ");
-		Scanner in = new Scanner(System.in);
+		Option op = new Option();
 
-		while (!in.hasNextByte()) {
-			System.out.println();
-			System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");				
-			in.next();
-			System.out.println();
-			System.out.print("Select menu: ");
-		}
-
-		byte menu = in.nextByte();
-
-		while (menu!=1 && menu!=2 && menu!=3) {
-			System.out.println();
-			System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");
-			System.out.println();
-			System.out.print("Select menu: ");
-
-			while (!in.hasNextByte()) {
-				System.out.println();
-				System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");				
-				in.next();
-				System.out.println();
-				System.out.print("Enter your choice: ");
-			}
-
-			menu = in.nextByte();
-		}
+		byte menu = op.chooseMenu();
 		System.out.println();
 
 		if (menu==1) {
-			// byte input = chooseInput();
-			// Choosing input option
-			System.out.println("Input Option");
-			System.out.println("1. Keyboard");
-			System.out.println("2. Text file");
-			System.out.print("Select input: ");
-	
-			while (!in.hasNextByte()) {
-				System.out.println();
-				System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
-				in.next();
-				System.out.println();
-				System.out.print("Select input: ");
-			}
-			byte input = in.nextByte();
-			while (input!=1 && input!=2) {
-				System.out.println();
-				System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
-				System.out.println();
-				System.out.print("Select input: ");
-
-				while (!in.hasNextByte()) {
-					System.out.println();
-					System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
-					in.next();
-					System.out.println();
-					System.out.print("Select input: ");
-				}
-				input = in.nextByte();
-			}
+			byte input = op.chooseInput();
 
 			if (input == 1) {
 				int m = in.nextInt(), n = in.nextInt();
 				MatAug mt = new MatAug(m,n);
 				mt.fillUsingSPL(m,n);
+				System.out.println();
 
-				// Testing: display matrix augmented from input keyboard
-				for (int i=0; i<m; i++) {
-					for (int j=0; j<=n; j++) {
-						System.out.print(mt.get(i,j) + " ");
-					}
-					System.out.println();
+				byte method = op.chooseMethod();
+
+				if (method == 1) {
+					mt.runGaussElimination();
+				} else {
+					mt.runGauseeJordanElimination();
 				}
 			} else {
 				// Input From file
