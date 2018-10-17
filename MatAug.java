@@ -6,21 +6,25 @@ public class MatAug { // Matrix Augmented
 	double[][] mt;
 
 	MatAug (int m, int n) {
-		mt = new double[m+1][n+1]; 
+		mt = new double[m+1][n+1];
 	}
 
-	MatAug (int n) {
-		mt = new double[n+1][n+1];
+	// Getter
+	public double get(int i, int j) {
+		return mt[i][j];
 	}
 
-	public void fillWithSPL(int m, int n, double[][] a) {
+
+	public void fillUsingSPL(int m, int n) {
+		Scanner in = new Scanner(System.in);
 		for (int i=0; i<m; i++) {
 			for (int j=0; j<=n; j++) {
-				this.mt[i][j] = a[i][j];
+				this.mt[i][j] = in.nextDouble();
 			}
 		}
 
-		System.out.println("Matrix augmented is successfully created!")
+		System.out.println("Matrix augmented is successfully created!");
+		in.close();
 	}
 
 	public void fillWithSPLFile() {
