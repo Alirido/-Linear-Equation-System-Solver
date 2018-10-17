@@ -100,14 +100,14 @@ public class Main {
 		}
 		System.out.println();
 
-		Option op = new Option();
+		// Option op = new Option();
 
-		byte menu = op.chooseMenu();
+		byte menu = Option.chooseMenu();
 		System.out.println();
 
 		Scanner in = new Scanner(System.in);
 		if (menu==1) {
-			byte input = op.chooseInput();
+			byte input = Option.chooseInput();
 
 			if (input == 1) {
 				int m = in.nextInt(), n = in.nextInt();
@@ -115,7 +115,7 @@ public class Main {
 				mt.fillUsingSPL(m,n);
 				System.out.println();
 
-				byte method = op.chooseMethod();
+				byte method = Option.chooseMethod();
 
 				if (method == 1) {
 					mt.runGaussElimination();
@@ -128,7 +128,7 @@ public class Main {
 			}
 
 		} else if (menu==2) {
-			byte input = op.chooseInput();
+			byte input = Option.chooseInput();
 
 			if (input == 1) {
 				int n = in.nextInt();

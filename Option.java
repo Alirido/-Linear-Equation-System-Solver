@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Option {
 
-	public byte chooseMenu() {
+	public static byte chooseMenu() {
 		// MENU 
 		System.out.println("MENU");
 		System.out.println("1. Linear Equation System");
@@ -42,7 +42,7 @@ public class Option {
 		return menu;
 	}
 
-	public byte chooseInput() {
+	public static byte chooseInput() {
 		// Choosing input option
 		System.out.println("Input Option");
 		System.out.println("1. Keyboard");
@@ -81,7 +81,7 @@ public class Option {
 		return input;
 	}
 
-	public byte chooseMethod() {
+	public static byte chooseMethod() {
 		// Choosing method
 		System.out.println("Method Option");
 		System.out.println("1. Gauss Elimination");
