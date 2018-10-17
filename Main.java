@@ -125,6 +125,13 @@ public class Main {
 				}
 			} else {
 				// Input From file
+				File f = new File("spl.txt");
+				Scanner scan = new Scanner(f);
+				int col=0,row=0;
+				while (scan.hasNext()) {
+					
+				}
+
 				System.out.println("Is there something wrong?");
 			}
 
