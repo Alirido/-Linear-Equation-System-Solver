@@ -132,6 +132,16 @@ public class Main {
 				int n = in.nextInt();
 				MatAug mt = new MatAug(n,n+1);
 				mt.fillUsingPI(n);
+
+				// Testing: display PI
+				for (int i=0; i<n; i++) {
+					for (int j=0; j<=n+1; j++) {
+						System.out.println(mt.get(i,j) + " ");
+					}
+					System.out.println();
+				}
+			} else {
+				// Input From file
 			}
 
 		} else {
