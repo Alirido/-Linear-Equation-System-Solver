@@ -6,11 +6,13 @@ public class MatAug { // Matrix Augmented
 	// Atribut
 	double[][] mt;
 	int row, col;
+	double[] result;
 
 	MatAug (int m, int n) {
 		mt = new double[m+1][n+1];
 		row = m;
 		col = n;
+		result = new double[n];
 	}
 
 	// Getter
@@ -95,6 +97,26 @@ public class MatAug { // Matrix Augmented
 
 	// Algorithm for Gauss and Gauss-jordan elimination
 	public void runGaussElimination() {
+		// Searching row with the main one
+
+		for (int j=0; j<(this.col-1); j++) {
+			int i=j;
+			boolean found=false;
+			while (!found && i<this.row) {
+				if (mt[i][j]!=0) {
+					this.swap(i, j);
+					this.makeMainOne(j);
+					found=true;
+				} else i++;
+			}
+			if (found) {
+				for (i=j+1; i<this.row; i++) {
+					this.minusRow(i, j);
+				}
+			}
+		}
+
+		
 
 	}
 
