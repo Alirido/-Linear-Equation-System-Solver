@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;
 
 public class MatAug { // Matrix Augmented
@@ -126,17 +126,18 @@ public class MatAug { // Matrix Augmented
 		}
 	}
 
-	public byte _checkLastRow() {
-		int i = 0, check=-1;
-		while (i<this.col && check != -1) {
-			if (mt[this.row-1][i]!=0)
-				check = i;
-			else i++;
+	public byte _checkRow() {
+		int i = this.row-1, j=0, check=-1;
+		while (i>=0 && check == -1) {
+			while (j<this.col && check == -1) {
+				if (mt[i][j]!=0)
+					check = j;
+				else j++;
+			}
+			i--;
 		}
-		if (check==-1)
+		if (check==this.col-1)
 			return 0;
-		else if (check==this.col-1)
-			return -1;
 		else return 1;
 
 	}
@@ -171,10 +172,10 @@ public class MatAug { // Matrix Augmented
 		this.printM();
 
 
-		byte solution = this._checkLastRow();
-		if (solution==-1) // No solution
+		byte solution = this._checkRow();
+		if (solution==0) // No solution
 			System.out.println("This system has no solution");
-		else if (solution==0) { // Many Solution
+		else if (solution==1) { // There is solution
 			String[] ans = new String[this.col];
 			char ex = 'a'; // Example
 			for (int i=this.row-1; i>=0; i--) {
@@ -187,10 +188,8 @@ public class MatAug { // Matrix Augmented
 				}
 
 				if (firstNum!=-1) {
-					// ans[firstNum].append("" + mt[i][this.col-1]);
-					ans[firstNum] = "" + mt[i][this.col-1];
-					System.out.println("ans[firstNum]= " + ans[firstNum]); // Debugging
-
+					double value = mt[i][this.col-1];
+					String variable = "";
 					for (j=firstNum+1; j<this.col-1; j++) {
 						if (mt[i][j]==0) {
 							if (ans[j]==null) {
@@ -205,21 +204,22 @@ public class MatAug { // Matrix Augmented
 								ex++;
 							}
 							// ans[firstNum].append((mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1))));
-							ans[firstNum] += (mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1)));
+							try {
+								double tempf = Double.parseDouble(ans[j]);
+								value -= tempf;
+							} catch (Exception e) {
+								variable += (mt[i][j]>0? " - "+mt[i][j]+ans[j] : " + "+(mt[i][j]*(-1))+ans[j]);
+							}
+							// ans[firstNum] += (mt[i][j]>0? " - "+mt[i][j]+ans[j] : " + "+(mt[i][j]*(-1))+ans[j]);
 						}
 					}
-
+					ans[firstNum] = "" + value + variable;
 				}
-
 			}
 			System.out.println("Solution of this system is :");
 			for (int i=0; i<this.col-1; i++)
-				System.out.println(ans[i]);
-		} else { // One solution (unique)
-			// System.out.println("This system has a solution");
-			this._substitute();
-
-		}
+				System.out.println("x" + (i+1) + " = " + ans[i]);
+		} 
 
 	}
 
@@ -229,7 +229,7 @@ public class MatAug { // Matrix Augmented
 
 	// Display Matrix Augmented
 	public void printM() {
-		System.out.println("Size of Matrix Augmented = " + this.row + " x " + this.col); // Debugging
+		System.out.println("\nSize of Matrix Augmented = " + this.row + " x " + this.col); // Debugging
 		for (int i=0; i<this.row; i++) {
 			for (int j=0; j<this.col; j++)
 				System.out.print(mt[i][j] + " ");
