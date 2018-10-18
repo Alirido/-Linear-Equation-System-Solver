@@ -6,13 +6,13 @@ public class MatAug { // Matrix Augmented
 	// Atribut
 	double[][] mt;
 	int row, col;
-	double[] result;
+	String[] result;
 
 	MatAug (int m, int n) {
 		mt = new double[m+1][n+1];
 		row = m;
 		col = n;
-		result = new double[n];
+		result = new String[n];
 	}
 
 	// Getter
@@ -142,8 +142,14 @@ public class MatAug { // Matrix Augmented
 
 	}
 
-	public void _substitute() {
-
+	public int _findMainOne(int r) {
+		int ans = -1, j=0;
+		while (ans==-1 && j<this.col-1) {
+			if (mt[r][j]==1)
+				ans = j;
+			else j++;
+		}
+		return ans;
 	}
 
 	public void runGaussElimination() {
@@ -169,14 +175,15 @@ public class MatAug { // Matrix Augmented
 		}
 
 		//Testing
+		System.out.println("The result of Gauss Elimination method: ");
 		this.printM();
 
-
 		byte solution = this._checkRow();
+
 		if (solution==0) // No solution
 			System.out.println("This system has no solution");
 		else if (solution==1) { // There is solution
-			String[] ans = new String[this.col];
+			// String[] ans = new String[this.col];
 			char ex = 'a'; // Example
 			for (int i=this.row-1; i>=0; i--) {
 				int firstNum=-1, j=0;
@@ -192,48 +199,80 @@ public class MatAug { // Matrix Augmented
 					String variable = "";
 					for (j=firstNum+1; j<this.col-1; j++) {
 						if (mt[i][j]==0) {
-							if (ans[j]==null) {
-								// ans[j].append(ex);
-								ans[j] = "" + ex;
+							if (result[j]==null) {
+								result[j] = "" + ex;
 								ex++;
 							}
 						} else {
-							if (ans[j]==null) {
-								// ans[j].append(ex);
-								ans[j] = "" + ex;
+							if (result[j]==null) {
+								result[j] = "" + ex;
 								ex++;
 							}
-							// ans[firstNum].append((mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1))));
 							try {
-								double tempf = Double.parseDouble(ans[j]);
-								value -= tempf;
+								double tempf = Double.parseDouble(result[j]);
+								value -= (tempf*mt[i][j]);
 							} catch (Exception e) {
-								variable += (mt[i][j]>0? " - "+mt[i][j]+ans[j] : " + "+(mt[i][j]*(-1))+ans[j]);
+								variable += (mt[i][j]>0? " - "+mt[i][j]+"("+result[j]+")" : " + "+(mt[i][j]*(-1))+"("+result[j]+")");
 							}
-							// ans[firstNum] += (mt[i][j]>0? " - "+mt[i][j]+ans[j] : " + "+(mt[i][j]*(-1))+ans[j]);
 						}
 					}
-					ans[firstNum] = "" + value + variable;
+					result[firstNum] = "" + value + variable;
 				}
 			}
 			System.out.println("Solution of this system is :");
 			for (int i=0; i<this.col-1; i++)
-				System.out.println("x" + (i+1) + " = " + ans[i]);
+				System.out.println("x" + (i+1) + " = " + result[i]);
 		} 
 
 	}
 
 	public void runGaussJordanElimination() {
-		
+		// Make matriks Echelon
+		int current_row=0;
+		for (int j=0; j<(this.col-1); j++) {
+			int i=current_row;
+			boolean found=false;
+			while (!found && i<this.row) {
+				if (mt[i][j]!=0) {
+					this._swap(i, j);
+					this._simplify(j);
+					found=true;
+				} else i++;
+			}
+			if (found) {
+				for (i=current_row+1; i<this.row; i++) {
+					this._minusRow(i, current_row, j);
+				}
+				current_row++;
+			}
+		}
+
+		// Make Matriks Reduction-Echelon
+		current_row = this.row-1;
+		while (current_row>0) {	
+			int j = this._findMainOne(current_row);
+			while (j==-1) {
+				current_row--;
+				j = this._findMainOne(current_row);
+			}
+			for (int i=current_row-1; i>=0; i--) {
+				this._minusRow(i, current_row, j);
+			}
+			current_row--;
+		}
+
+		//Testing
+		System.out.println("The result of Gauss-Jordan Elimination method: ");
+		this.printM();
 	}
 
 	// Display Matrix Augmented
 	public void printM() {
-		System.out.println("\nSize of Matrix Augmented = " + this.row + " x " + this.col); // Debugging
 		for (int i=0; i<this.row; i++) {
 			for (int j=0; j<this.col; j++)
 				System.out.print(mt[i][j] + " ");
 			System.out.println();
 		}
+		System.out.println();
 	}
 }

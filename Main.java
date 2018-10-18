@@ -98,7 +98,6 @@ public class Main {
 				if (method == 1) {
 					mt.runGaussElimination();
 				} else {
-					System.out.println("Yeay!");
 					mt.runGaussJordanElimination();
 				}
 			} else { // Input from file
