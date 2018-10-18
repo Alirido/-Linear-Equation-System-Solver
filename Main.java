@@ -4,85 +4,6 @@ import java.io.File;
 
 public class Main {
 
-	// public byte chooseMenu() {
-	// 	// MENU 
-	// 	System.out.println("MENU");
-	// 	System.out.println("1. Linear Equation System");
-	// 	System.out.println("2. Polynomial Interpolation");
-	// 	System.out.println("3. Exit");
-	// 	System.out.print("Select menu: ");
-	// 	Scanner in = new Scanner(System.in);
-
-	// 	while (!in.hasNextByte()) {
-	// 		System.out.println();
-	// 		System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");				
-	// 		in.next();
-	// 		System.out.println();
-	// 		System.out.print("Select menu: ");
-	// 	}
-
-	// 	byte menu = in.nextByte();
-
-	// 	while (menu!=1 && menu!=2 && menu!=3) {
-	// 		System.out.println();
-	// 		System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");
-	// 		System.out.println();
-	// 		System.out.print("Select menu: ");
-
-	// 		while (!in.hasNextByte()) {
-	// 			System.out.println();
-	// 			System.out.println("Invalid input. Please enter 1, 2 or 3 for your choice!");				
-	// 			in.next();
-	// 			System.out.println();
-	// 			System.out.print("Enter your choice: ");
-	// 		}
-
-	// 		menu = in.nextByte();
-	// 	}
-
-	// 	in.close();
-	// 	return menu;
-	// }
-
-	// public byte chooseInput() {
-	// 	// Choosing input option
-	// 	System.out.println("Choose input:");
-	// 	System.out.println("1. Keyboard");
-	// 	System.out.println("2. Text file");
-	// 	System.out.print("Enter your choice: ");
-	// 	Scanner in = new Scanner(System.in);
-
-	// 	while (!in.hasNextByte()) {
-	// 		System.out.println();
-	// 		System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
-	// 		in.next();
-	// 		System.out.println();
-	// 		System.out.print("Enter your choice: ");
-	// 	}
-
-	// 	byte input = in.nextByte();
-
-	// 	while (input!=1 && input!=2) {
-	// 		System.out.println();
-	// 		System.out.println("Invalid input. Please enter 1 or 2 for your choice!");
-	// 		System.out.println();
-	// 		System.out.print("Enter your choice: ");
-
-	// 		while (!in.hasNextByte()) {
-	// 			System.out.println();
-	// 			System.out.println("Invalid input. Please enter 1 or 2 for your choice!");				
-	// 			in.next();
-	// 			System.out.println();
-	// 			System.out.print("Enter your choice: ");
-	// 		}
-
-	// 		input = in.nextByte();
-	// 	}
-
-	// 	in.close();
-	// 	return input;
-	// }
-
 	public static void main(String[] args) {
 
 		// Loading segment
@@ -101,16 +22,14 @@ public class Main {
 		}
 		System.out.println();
 
-		// Option op = new Option();
-
 		byte menu = Option.chooseMenu();
 		System.out.println();
 
 		Scanner in = new Scanner(System.in);
-		if (menu==1) {
+		if (menu==1) { // Linear Equation System
 			byte input = Option.chooseInput();
 
-			if (input == 1) {
+			if (input == 1) { // Input from keyboard
 				int m = in.nextInt(), n = in.nextInt();
 				MatAug mt = new MatAug(m,n+1);
 				mt.fillUsingSPL();
@@ -124,18 +43,18 @@ public class Main {
 					System.out.println("Yeay!");
 					mt.runGaussJordanElimination();
 				}
-			} else {
-				// Input From file
+			} else { // Input From file
 				File f = new File("spl.txt");
-				int col=0, row=1;
+				int col=1, row=1;
 				Scanner scan = null;
 				try {
 					scan = new Scanner(f);
-					while (scan.hasNextLine()) {
-						scan.nextDouble();
-						col++;
+					String str = scan.nextLine();
+					for (int i=0; i<str.length(); i++) {
+						if (str.charAt(i)==' ')
+							col++;
 					}
-					while (scan.hasNext()) {
+					while (scan.hasNextLine()) {
 						scan.nextLine();
 						row++;
 					}
@@ -152,7 +71,7 @@ public class Main {
 				mt.printM();
 			}
 
-		} else if (menu==2) {
+		} else if (menu==2) { // Polynomial Interpolation
 			byte input = Option.chooseInput();
 
 			if (input == 1) {
@@ -166,7 +85,7 @@ public class Main {
 				// Input From file
 			}
 
-		} else {
+		} else { // Exit
 			System.out.println();
 			for (int i=0; i<14; i++) {
 				if (i==0)
