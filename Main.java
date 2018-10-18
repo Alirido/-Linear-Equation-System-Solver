@@ -87,9 +87,6 @@ public class Main {
 				MatAug mt = new MatAug(n+1,n+2);
 				mt.fillUsingPI();
 
-				// Testing: display PI
-				mt.printM();
-
 				// Choose method
 				byte method = Option.chooseMethod();
 
@@ -98,6 +95,14 @@ public class Main {
 				} else {
 					mt.runGaussJordanElimination();
 				}
+
+				mt.printFunction();
+
+				System.out.print("Enter value that you wanna assign to the function: ");
+				double x = in.nextDouble();
+
+				System.out.print("P("+x+") = " + mt.fResult(x));
+
 			} else { // Input from file
 				File f = new File("pi.txt"); // pi = polynomial interpolation
 				int col=0, row=0;
@@ -120,7 +125,7 @@ public class Main {
 				mt.fillUsingPIFile();
 
 				// Testing: Display MatAug
-				mt.printM();
+				// mt.printM();
 
 				// Choose method
 				byte method = Option.chooseMethod();
@@ -130,6 +135,13 @@ public class Main {
 				} else {
 					mt.runGaussJordanElimination();
 				}
+
+				mt.printFunction();
+
+				System.out.print("Enter value that you wanna assign to the function: ");
+				double x = in.nextDouble();
+
+				System.out.print("P("+x+") = " + mt.fResult(x));
 			}
 
 		} else { // Exit

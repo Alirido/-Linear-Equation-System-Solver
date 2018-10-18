@@ -12,7 +12,7 @@ public class MatAug { // Matrix Augmented
 		mt = new double[m+1][n+1];
 		row = m;
 		col = n;
-		result = new String[n];
+		result = new String[n-1];
 	}
 
 	// Getter
@@ -309,6 +309,20 @@ public class MatAug { // Matrix Augmented
 			for (int i=0; i<this.col-1; i++)
 				System.out.println("x" + (i+1) + " = " + result[i]);
 		}
+	}
+
+	public void printFunction() {
+		
+	}
+
+	public double fResult(double x) {
+		double multipler=1,ans=0;
+		for (int i=0; i<this.col-1; i++) {
+			double temp = Double.parseDouble(result[i]);
+			ans += (temp*multipler);
+			multipler *= x;
+		}
+		return ans;
 	}
 
 	// Display Matrix Augmented
