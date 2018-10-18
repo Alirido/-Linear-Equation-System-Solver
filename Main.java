@@ -82,15 +82,41 @@ public class Main {
 		} else if (menu==2) { // Polynomial Interpolation
 			byte input = Option.chooseInput();
 
-			if (input == 1) {
+			if (input == 1) { // Input from keyboard
 				int n = in.nextInt();
-				MatAug mt = new MatAug(n,n+2);
+				MatAug mt = new MatAug(n+1,n+2);
 				mt.fillUsingPI();
 
 				// Testing: display PI
 				mt.printM();
-			} else {
-				// Input From file
+
+				// Choose method
+				byte method = Option.chooseMethod();
+
+				if (method == 1) {
+					mt.runGaussElimination();
+				} else {
+					System.out.println("Yeay!");
+					mt.runGaussJordanElimination();
+				}
+			} else { // Input from file
+				File f = new File("pi.txt"); // pi = polynomial interpolation
+				int col=0, row=0;
+				Scanner scan = null;
+				try {
+					scan = new Scanner(f);
+					while (scan.hasNextLine()) {
+						scan.nextLine();
+						row++;
+					}
+					col = row+1;
+				} catch (Exception e) {
+					System.out.println(e);
+				} finally {
+					if (scan != null)
+						scan.close();
+				}
+				MatAug mt = new MatAug(row, col);
 			}
 
 		} else { // Exit
