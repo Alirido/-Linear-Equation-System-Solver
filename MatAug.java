@@ -26,7 +26,18 @@ public class MatAug { // Matrix Augmented
 		// in.close();
 	}
 
-	public void fillWithSPLFile() {
+	public void fillUsingSPLFile(int m, int n) {
+		File f = new File("spl.txt");
+
+		Scanner scan = new Scanner(f);
+
+		for (int i=0;i<m; i++) {
+			for (int j=0; j<n; j++) {
+				this.mt[i][j]=scan.nextDouble();
+			}
+		}
+
+		scan.close();
 
 	}
 
@@ -57,4 +68,6 @@ public class MatAug { // Matrix Augmented
 	public void runGaussJordanElimination() {
 		
 	}
+
+	
 }

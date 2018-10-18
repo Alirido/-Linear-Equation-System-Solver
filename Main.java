@@ -127,10 +127,20 @@ public class Main {
 				// Input From file
 				File f = new File("spl.txt");
 				Scanner scan = new Scanner(f);
-				int col=0,row=0;
-				while (scan.hasNext()) {
-					
+				int col=0;
+				while (scan.hasNextLine()) {
+					scan.nextDouble();
+					col++;
 				}
+				int row = 1;
+				while (scan.hasNext()) {
+					scan.nextLine();
+					row++;
+				}
+				MatAug mt = new MatAug(row, col);
+				scan.close();
+				
+				mt.fillUsingSPLFile(row,col);
 
 				System.out.println("Is there something wrong?");
 			}
