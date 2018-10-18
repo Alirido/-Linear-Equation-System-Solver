@@ -117,6 +117,11 @@ public class Main {
 						scan.close();
 				}
 				MatAug mt = new MatAug(row, col);
+
+				mt.fillUsingPIFile();
+
+				// Testing: Display MatAug
+				mt.printM();
 			}
 
 		} else { // Exit

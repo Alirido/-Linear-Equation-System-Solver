@@ -66,8 +66,30 @@ public class MatAug { // Matrix Augmented
 		// in.close();
 	}
 
-	public void fillWithPIFile() { // Polynomial Interpolation
+	public void fillUsingPIFile() { // Polynomial Interpolation
+		File f = new File("pi.txt");
 
+		Scanner scan = null;
+		try {
+			scan = new Scanner(f);
+	
+			for (int i=0; i<this.row; i++) {
+				
+				double x = scan.nextDouble(), y = scan.nextDouble();
+				
+				this.mt[i][0] = 1; this.mt[i][this.col-1]=y;
+				
+				for (int j=1; j<(this.col-1); j++) {
+					this.mt[i][j] = this.mt[i][j-1]*x;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			System.out.println("Matrix augmented is successfully created!");
+			if (scan != null)
+				scan.close();
+		}
 	}
 
 
