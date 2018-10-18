@@ -74,6 +74,8 @@ public class Main {
 
 				mt.fillUsingSPLFile();
 
+				mt.printM();
+
 				// Choosing method
 				byte method = Option.chooseMethod();
 

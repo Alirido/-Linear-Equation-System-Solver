@@ -103,11 +103,11 @@ public class MatAug { // Matrix Augmented
 			double[] temp = new double[this.col+1];
 			// for (int i=0; i<)
 			for (int idx = 0; idx<this.col; idx++)
-				temp[idx] = mt[i][idx];
+				temp[idx] = this.mt[i][idx];
 			for (int idx = 0; idx<this.col; idx++)
-				mt[i][idx] = mt[j][idx];
+				this.mt[i][idx] = this.mt[j][idx];
 			for (int idx = 0; idx<this.col; idx++)
-				mt[j][idx] = temp[idx];
+				this.mt[j][idx] = temp[idx];
 			// temp = mt[i];
 			// mt[i]=mt[j];
 			// mt[j]=temp;
@@ -167,11 +167,11 @@ public class MatAug { // Matrix Augmented
 			int i=current_row;
 			boolean found=false;
 			while (!found && i<this.row) {
-				System.out.println("Sampe sini ngga lu: " + i);
+				// System.out.println("Sampe sini ngga lu: " + i);
 				if (mt[i][j]!=0) {
-					System.out.println("i = " + i + ", j = "+j);
-					this._swap(i, j);
-					this._simplify(j);
+					// System.out.println("i = " + i + ", j = "+j);
+					this._swap(current_row, i);
+					this._simplify(current_row);
 					found=true;
 				} else i++;
 			}
@@ -346,6 +346,7 @@ public class MatAug { // Matrix Augmented
 
 	// Display Matrix Augmented
 	public void printM() {
+		// System.out.println("size: " + row + " " + col);
 		for (int i=0; i<this.row; i++) {
 			for (int j=0; j<this.col; j++)
 				System.out.print(mt[i][j] + " ");
