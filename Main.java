@@ -35,6 +35,7 @@ public class Main {
 				mt.fillUsingSPL();
 				System.out.println();
 
+				// Choosing method
 				byte method = Option.chooseMethod();
 
 				if (method == 1) {
@@ -69,6 +70,7 @@ public class Main {
 
 				mt.fillUsingSPLFile();
 
+				// Choosing method
 				byte method = Option.chooseMethod();
 
 				if (method == 1) {
@@ -122,6 +124,16 @@ public class Main {
 
 				// Testing: Display MatAug
 				mt.printM();
+
+				// Choose method
+				byte method = Option.chooseMethod();
+
+				if (method == 1) {
+					mt.runGaussElimination();
+				} else {
+					System.out.println("Yeay!");
+					mt.runGaussJordanElimination();
+				}
 			}
 
 		} else { // Exit
