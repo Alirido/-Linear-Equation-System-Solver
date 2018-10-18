@@ -116,7 +116,14 @@ public class MatAug { // Matrix Augmented
 			}
 		}
 
-		
+		byte solution = this.checkLastRow();
+		if (solution==-1)
+			System.out.println("This system has no solution");
+		else if (solution==0)
+			System.out.println("This system has many solution");
+		else {
+			system.out.println("This system has a solution");
+		}
 
 	}
 
