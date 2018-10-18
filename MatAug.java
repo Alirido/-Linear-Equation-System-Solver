@@ -18,6 +18,7 @@ public class MatAug { // Matrix Augmented
 		return mt[i][j];
 	}
 
+	// Filling Matrix Augmented from input
 	public void fillUsingSPL() {
 		Scanner in = new Scanner(System.in);
 		for (int i=0; i<this.row; i++) {
@@ -92,8 +93,7 @@ public class MatAug { // Matrix Augmented
 		}
 	}
 
-
-
+	// Algorithm for Gauss and Gauss-jordan elimination
 	public void runGaussElimination() {
 
 	}
@@ -102,6 +102,7 @@ public class MatAug { // Matrix Augmented
 		
 	}
 
+	// Display Matrix Augmented
 	public void printM() {
 		System.out.println("Size of Matrix Augmented = " + this.row + " x " + this.col); // Debugging
 		for (int i=0; i<this.row; i++) {
