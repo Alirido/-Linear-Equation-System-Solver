@@ -29,12 +29,12 @@ public class MatAug { // Matrix Augmented
 			}
 		}
 
-		System.out.println("Matrix augmented is successfully created!");
+		System.out.println("Matrix augmented is successfully created!\n");
 		// in.close();
 	}
 
 	public void fillUsingSPLFile() {
-		File f = new File("spl.txt");
+		File f = new File("tes.txt");
 
 		Scanner scan = null;
 		try {
@@ -48,7 +48,7 @@ public class MatAug { // Matrix Augmented
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
-			System.out.println("Matrix augmented is successfully created!");
+			System.out.println("Matrix augmented is successfully created!\n");
 			if (scan != null)
 				scan.close();
 		}
@@ -65,7 +65,7 @@ public class MatAug { // Matrix Augmented
 			}
 		}
 
-		System.out.println("Matrix augmented is successfully created!");
+		System.out.println("Matrix augmented is successfully created!\n");
 		// in.close();
 	}
 
@@ -89,7 +89,7 @@ public class MatAug { // Matrix Augmented
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
-			System.out.println("Matrix augmented is successfully created!");
+			System.out.println("Matrix augmented is successfully created!\n");
 			if (scan != null)
 				scan.close();
 		}
@@ -97,14 +97,14 @@ public class MatAug { // Matrix Augmented
 
 	// Algorithm for Gauss and Gauss-jordan elimination
 	public void _swap(int i, int j) { // j higher than i (row)
-		if (i==j)
-			return;
+		if (i!=j) {
 
-		double[] temp = double[this.col];
-		// for (int i=0; i<)
-		temp = mt[i];
-		mt[i]=mt[j];
-		mt[j]=temp;
+			double[] temp = new double[this.col];
+			// for (int i=0; i<)
+			temp = mt[i];
+			mt[i]=mt[j];
+			mt[j]=temp;
+		}
 	}
 
 	public void _simplify(int i) {
@@ -112,17 +112,33 @@ public class MatAug { // Matrix Augmented
 		while (mt[i][j]==0)
 			j++;
 		double divisor=mt[i][j];
-		for (j; j<this.col; j++) {
+		for (; j<this.col; j++) {
 			mt[i][j]/=divisor;
 		}
 	}
 
-	public void _minusRow(int i, int j) {
-		
+	public void _minusRow(int i, int j, int checkpoint) {
+		if (mt[i][checkpoint]!=0) {
+			double multipler = mt[i][checkpoint];
+			for (int idx=checkpoint; idx<this.col; idx++) {
+				mt[i][idx] -= multipler*mt[j][idx];
+			}
+		}
 	}
 
 	public byte _checkLastRow() {
-		return 0;
+		int i = 0, check=-1;
+		while (i<this.col && check != -1) {
+			if (mt[this.row-1][i]!=0)
+				check = i;
+			else i++;
+		}
+		if (check==-1)
+			return 0;
+		else if (check==this.col-1)
+			return -1;
+		else return 1;
+
 	}
 
 	public void _substitute() {
@@ -132,8 +148,9 @@ public class MatAug { // Matrix Augmented
 	public void runGaussElimination() {
 
 		// Make matriks Echelon
+		int current_row=0;
 		for (int j=0; j<(this.col-1); j++) {
-			int i=j;
+			int i=current_row;
 			boolean found=false;
 			while (!found && i<this.row) {
 				if (mt[i][j]!=0) {
@@ -143,42 +160,48 @@ public class MatAug { // Matrix Augmented
 				} else i++;
 			}
 			if (found) {
-				for (i=j+1; i<this.row; i++) {
-					this._minusRow(i, j);
+				for (i=current_row+1; i<this.row; i++) {
+					this._minusRow(i, current_row, j);
 				}
+				current_row++;
 			}
 		}
 
+		//Testing
+		this.printM();
+
+
 		byte solution = this._checkLastRow();
-		if (solution==-1)
+		if (solution==-1) // No solution
 			System.out.println("This system has no solution");
-		else if (solution==0) {
-			String[] ans = new String[this.col];
+		else if (solution==0) { // Many Solution
+			StringBuilder[] ans = new StringBuilder[this.col];
 			char ex = 'a'; // Example
 			for (int i=this.row-1; i>=0; i--) {
 				int firstNum=-1, j=0;
 
-				while (firstNum!=-1 && j<this.col-1) {
+				while (firstNum==-1 && j<this.col-1) {
 					if (mt[i][j]!=0)
 						firstNum = j;
 					else j++;
 				}
 
 				if (firstNum!=-1) {
-					ans[firstNum] = "" + mt[i][this.col-1];
+					ans[firstNum].append("" + mt[i][this.col-1]);
+					System.out.println("ans[firstNum]= " + ans[firstNum]); // Debugging
 
 					for (j=firstNum+1; j<this.col-1; j++) {
 						if (mt[i][j]==0) {
 							if (ans[j]==null) {
-								ans[j]=ex;
+								ans[j].append(ex);
 								ex++;
 							}
 						} else {
 							if (ans[j]==null) {
-								ans[j]=ex;
+								ans[j].append(ex);
 								ex++;
 							}
-							ans[firstNum] += (mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1)));
+							ans[firstNum].append((mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1))));
 						}
 					}
 
@@ -188,7 +211,7 @@ public class MatAug { // Matrix Augmented
 			System.out.println("Solution of this system is :");
 			for (int i=0; i<this.col-1; i++)
 				System.out.println(ans[i]);
-		} else {
+		} else { // One solution (unique)
 			// System.out.println("This system has a solution");
 			this._substitute();
 

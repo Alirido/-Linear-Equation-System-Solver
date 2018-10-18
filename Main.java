@@ -46,7 +46,7 @@ public class Main {
 				}
 
 			} else { // Input From file
-				File f = new File("spl.txt");
+				File f = new File("tes.txt");
 				int col=1, row=1;
 				Scanner scan = null;
 				try {
