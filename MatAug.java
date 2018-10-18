@@ -81,6 +81,7 @@ public class MatAug { // Matrix Augmented
 	}
 
 	public void printM() {
+		System.out.println(this.row + " " + this.col); // Debugging
 		for (int i=0; i<this.row; i++) {
 			for (int j=0; j<this.col; j++)
 				System.out.print(mt[i][j] + " ");
