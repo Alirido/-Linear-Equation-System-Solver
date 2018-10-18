@@ -96,38 +96,88 @@ public class MatAug { // Matrix Augmented
 	}
 
 	// Algorithm for Gauss and Gauss-jordan elimination
-	public void runGaussElimination() {
-		// Searching row with the main one
+	public void _swap(int i, int j) {
 
+	}
+
+	public void _simplify(int i) {
+
+	}
+
+	public void _minusRow(int i, int j) {
+
+	}
+
+	public byte _checkLastRow() {
+		return 0;
+	}
+
+	public void _substitute() {
+
+	}
+
+	public void runGaussElimination() {
+
+		// Make matriks Echelon
 		for (int j=0; j<(this.col-1); j++) {
 			int i=j;
 			boolean found=false;
 			while (!found && i<this.row) {
 				if (mt[i][j]!=0) {
-					this.swap(i, j);
-					this.simplify(j);
+					this._swap(i, j);
+					this._simplify(j);
 					found=true;
 				} else i++;
 			}
 			if (found) {
 				for (i=j+1; i<this.row; i++) {
-					this.minusRow(i, j);
+					this._minusRow(i, j);
 				}
 			}
 		}
 
-		byte solution = this.checkLastRow();
+		byte solution = this._checkLastRow();
 		if (solution==-1)
 			System.out.println("This system has no solution");
 		else if (solution==0) {
-			String ans = new String[this.col-1];
+			String[] ans = new String[this.col];
 			char ex = 'a'; // Example
 			for (int i=this.row-1; i>=0; i--) {
-				for ()
+				int firstNum=-1, j=0;
+
+				while (firstNum!=-1 && j<this.col-1) {
+					if (mt[i][j]!=0)
+						firstNum = j;
+					else j++;
+				}
+
+				if (firstNum!=-1) {
+					ans[firstNum] = "" + mt[i][this.col-1];
+
+					for (j=firstNum+1; j<this.col-1; j++) {
+						if (mt[i][j]==0) {
+							if (ans[j]==null) {
+								ans[j]=ex;
+								ex++;
+							}
+						} else {
+							if (ans[j]==null) {
+								ans[j]=ex;
+								ex++;
+							}
+							ans[firstNum] += (mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1)));
+						}
+					}
+
+				}
+
 			}
+			System.out.println("Solution of this system is :");
+			for (int i=0; i<this.col-1; i++)
+				System.out.println(ans[i]);
 		} else {
 			// System.out.println("This system has a solution");
-			this.substitute();
+			this._substitute();
 
 		}
 
