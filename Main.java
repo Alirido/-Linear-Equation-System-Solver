@@ -112,7 +112,7 @@ public class Main {
 			if (input == 1) {
 				int m = in.nextInt(), n = in.nextInt();
 				MatAug mt = new MatAug(m,n);
-				mt.fillUsingSPL(m,n);
+				mt.fillUsingSPL(m,n+1);
 				System.out.println();
 
 				byte method = Option.chooseMethod();
@@ -139,7 +139,7 @@ public class Main {
 				}
 				MatAug mt = new MatAug(row, col);
 				scan.close();
-				
+
 				mt.fillUsingSPLFile(row,col);
 
 				System.out.println("Is there something wrong?");

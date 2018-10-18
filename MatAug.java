@@ -4,9 +4,12 @@ public class MatAug { // Matrix Augmented
 
 	// Atribut
 	double[][] mt;
+	int row, col;
 
 	MatAug (int m, int n) {
 		mt = new double[m+1][n+1];
+		row = m;
+		col = n;
 	}
 
 	// Getter
@@ -14,10 +17,10 @@ public class MatAug { // Matrix Augmented
 		return mt[i][j];
 	}
 
-	public void fillUsingSPL(int m, int n) {
+	public void fillUsingSPL() {
 		Scanner in = new Scanner(System.in);
-		for (int i=0; i<m; i++) {
-			for (int j=0; j<=n; j++) {
+		for (int i=0; i<this.row; i++) {
+			for (int j=0; j<this.col; j++) {
 				this.mt[i][j] = in.nextDouble();
 			}
 		}
@@ -26,13 +29,13 @@ public class MatAug { // Matrix Augmented
 		// in.close();
 	}
 
-	public void fillUsingSPLFile(int m, int n) {
+	public void fillUsingSPLFile() {
 		File f = new File("spl.txt");
 
 		Scanner scan = new Scanner(f);
 
-		for (int i=0;i<m; i++) {
-			for (int j=0; j<n; j++) {
+		for (int i=0;i<this.row; i++) {
+			for (int j=0; j<this.col; j++) {
 				this.mt[i][j]=scan.nextDouble();
 			}
 		}
@@ -41,12 +44,12 @@ public class MatAug { // Matrix Augmented
 
 	}
 
-	public void fillUsingPI(int n) { // Polynomial Interpolation
+	public void fillUsingPI() { // Polynomial Interpolation
 		Scanner in = new Scanner(System.in);
-		for (int i=0; i<n; i++) {
+		for (int i=0; i<this.row; i++) {
 			double x = in.nextDouble(), y = in.nextDouble();
 			this.mt[i][0] = 1; this.mt[i][n+1]=y;
-			for (int j=1; j<=n; j++) {
+			for (int j=1; j<=this.col; j++) {
 				this.mt[i][j] = this.mt[i][j-1]*x;
 			}
 		}
@@ -69,5 +72,11 @@ public class MatAug { // Matrix Augmented
 		
 	}
 
-	
+	public void printM() {
+		for (int i=0; i<this.row; i++) {
+			for (int j=0; j<this.col; j++)
+				System.out.print(mt[i][j] + " ");
+			System.out.println();
+		}
+	}
 }
