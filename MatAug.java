@@ -105,7 +105,7 @@ public class MatAug { // Matrix Augmented
 			while (!found && i<this.row) {
 				if (mt[i][j]!=0) {
 					this.swap(i, j);
-					this.makeMainOne(j);
+					this.simplify(j);
 					found=true;
 				} else i++;
 			}
@@ -119,10 +119,16 @@ public class MatAug { // Matrix Augmented
 		byte solution = this.checkLastRow();
 		if (solution==-1)
 			System.out.println("This system has no solution");
-		else if (solution==0)
-			System.out.println("This system has many solution");
-		else {
-			system.out.println("This system has a solution");
+		else if (solution==0) {
+			String ans = new String[this.col-1];
+			char ex = 'a'; // Example
+			for (int i=this.row-1; i>=0; i--) {
+				for ()
+			}
+		} else {
+			// System.out.println("This system has a solution");
+			this.substitute();
+
 		}
 
 	}
