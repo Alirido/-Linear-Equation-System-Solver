@@ -35,6 +35,9 @@ public class Main {
 				mt.fillUsingSPL();
 				System.out.println();
 
+				// Testing: display
+				mt.printM();
+
 				// Choosing method
 				byte method = Option.chooseMethod();
 
@@ -43,6 +46,8 @@ public class Main {
 				} else {
 					mt.runGaussJordanElimination();
 				}
+
+				mt.printSolution();
 
 			} else { // Input From file
 				File f = new File("tes.txt");
@@ -77,6 +82,8 @@ public class Main {
 				} else {
 					mt.runGaussJordanElimination();
 				}
+
+				mt.printSolution();
 			}
 
 		} else if (menu==2) { // Polynomial Interpolation

@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.File;
+// import java.lang.*;	
 
 public class MatAug { // Matrix Augmented
 
@@ -99,11 +100,17 @@ public class MatAug { // Matrix Augmented
 	public void _swap(int i, int j) { // j higher than i (row)
 		if (i!=j) {
 
-			double[] temp = new double[this.col];
+			double[] temp = new double[this.col+1];
 			// for (int i=0; i<)
-			temp = mt[i];
-			mt[i]=mt[j];
-			mt[j]=temp;
+			for (int idx = 0; idx<this.col; idx++)
+				temp[idx] = mt[i][idx];
+			for (int idx = 0; idx<this.col; idx++)
+				mt[i][idx] = mt[j][idx];
+			for (int idx = 0; idx<this.col; idx++)
+				mt[j][idx] = temp[idx];
+			// temp = mt[i];
+			// mt[i]=mt[j];
+			// mt[j]=temp;
 		}
 	}
 
@@ -160,7 +167,9 @@ public class MatAug { // Matrix Augmented
 			int i=current_row;
 			boolean found=false;
 			while (!found && i<this.row) {
+				System.out.println("Sampe sini ngga lu: " + i);
 				if (mt[i][j]!=0) {
+					System.out.println("i = " + i + ", j = "+j);
 					this._swap(i, j);
 					this._simplify(j);
 					found=true;
@@ -219,9 +228,9 @@ public class MatAug { // Matrix Augmented
 					result[firstNum] = "" + value + variable;
 				}
 			}
-			System.out.println("Solution of this system is :");
-			for (int i=0; i<this.col-1; i++)
-				System.out.println("x" + (i+1) + " = " + result[i]);
+			// System.out.println("Solution of this system is :");
+			// for (int i=0; i<this.col-1; i++)
+			// 	System.out.println("x" + (i+1) + " = " + result[i]);
 		} 
 
 	}
@@ -305,14 +314,24 @@ public class MatAug { // Matrix Augmented
 					result[firstNum] = "" + value + variable;
 				}
 			}
-			System.out.println("Solution of this system is :");
-			for (int i=0; i<this.col-1; i++)
-				System.out.println("x" + (i+1) + " = " + result[i]);
+			// System.out.println("Solution of this system is :");
+			// for (int i=0; i<this.col-1; i++)
+			// 	System.out.println("x" + (i+1) + " = " + result[i]);
 		}
 	}
 
+	public void printSolution() {
+		System.out.println("Solution of this system is :");
+		for (int i=0; i<this.col-1; i++)
+			System.out.println("x" + (i+1) + " = " + result[i]);
+	}
+
 	public void printFunction() {
-		
+		System.out.print("P(x) = " + result[0]);
+		for (int i=1; i<this.col-1; i++) {
+			System.out.print(" + (" + result[i] + ")x^" + i);
+		}
+		System.out.println();
 	}
 
 	public double fResult(double x) {
