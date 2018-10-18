@@ -56,8 +56,8 @@ public class MatAug { // Matrix Augmented
 		Scanner in = new Scanner(System.in);
 		for (int i=0; i<this.row; i++) {
 			double x = in.nextDouble(), y = in.nextDouble();
-			this.mt[i][0] = 1; this.mt[i][this.col]=y;
-			for (int j=1; j<this.col; j++) {
+			this.mt[i][0] = 1; this.mt[i][this.col-1]=y;
+			for (int j=1; j<(this.col-1); j++) {
 				this.mt[i][j] = this.mt[i][j-1]*x;
 			}
 		}
@@ -81,7 +81,7 @@ public class MatAug { // Matrix Augmented
 	}
 
 	public void printM() {
-		System.out.println(this.row + " " + this.col); // Debugging
+		System.out.println("Size of Matrix Augmented = " + this.row + " x " + this.col); // Debugging
 		for (int i=0; i<this.row; i++) {
 			for (int j=0; j<this.col; j++)
 				System.out.print(mt[i][j] + " ");

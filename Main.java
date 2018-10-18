@@ -43,6 +43,7 @@ public class Main {
 					System.out.println("Yeay!");
 					mt.runGaussJordanElimination();
 				}
+
 			} else { // Input From file
 				File f = new File("spl.txt");
 				int col=1, row=1;
@@ -68,7 +69,14 @@ public class Main {
 
 				mt.fillUsingSPLFile();
 
-				mt.printM();
+				byte method = Option.chooseMethod();
+
+				if (method == 1) {
+					mt.runGaussElimination();
+				} else {
+					System.out.println("Yeay!");
+					mt.runGaussJordanElimination();
+				}
 			}
 
 		} else if (menu==2) { // Polynomial Interpolation
