@@ -96,16 +96,29 @@ public class MatAug { // Matrix Augmented
 	}
 
 	// Algorithm for Gauss and Gauss-jordan elimination
-	public void _swap(int i, int j) {
+	public void _swap(int i, int j) { // j higher than i (row)
+		if (i==j)
+			return;
 
+		double[] temp = double[this.col];
+		// for (int i=0; i<)
+		temp = mt[i];
+		mt[i]=mt[j];
+		mt[j]=temp;
 	}
 
 	public void _simplify(int i) {
-
+		int j=0;
+		while (mt[i][j]==0)
+			j++;
+		double divisor=mt[i][j];
+		for (j; j<this.col; j++) {
+			mt[i][j]/=divisor;
+		}
 	}
 
 	public void _minusRow(int i, int j) {
-
+		
 	}
 
 	public byte _checkLastRow() {
