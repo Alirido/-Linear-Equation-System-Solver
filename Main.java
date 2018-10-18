@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.lang.*;
+import java.io.File;
 
 public class Main {
 
@@ -111,8 +112,8 @@ public class Main {
 
 			if (input == 1) {
 				int m = in.nextInt(), n = in.nextInt();
-				MatAug mt = new MatAug(m,n);
-				mt.fillUsingSPL(m,n+1);
+				MatAug mt = new MatAug(m,n+1);
+				mt.fillUsingSPL();
 				System.out.println();
 
 				byte method = Option.chooseMethod();
@@ -126,23 +127,29 @@ public class Main {
 			} else {
 				// Input From file
 				File f = new File("spl.txt");
-				Scanner scan = new Scanner(f);
-				int col=0;
-				while (scan.hasNextLine()) {
-					scan.nextDouble();
-					col++;
-				}
-				int row = 1;
-				while (scan.hasNext()) {
-					scan.nextLine();
-					row++;
+				int col=0, row=1;
+				Scanner scan = null;
+				try {
+					scan = new Scanner(f);
+					while (scan.hasNextLine()) {
+						scan.nextDouble();
+						col++;
+					}
+					while (scan.hasNext()) {
+						scan.nextLine();
+						row++;
+					}
+				} catch (Exception e) {
+					System.out.println(e);
+				} finally {
+					if (scan != null)
+						scan.close();
 				}
 				MatAug mt = new MatAug(row, col);
-				scan.close();
 
-				mt.fillUsingSPLFile(row,col);
+				mt.fillUsingSPLFile();
 
-				System.out.println("Is there something wrong?");
+				mt.printM();
 			}
 
 		} else if (menu==2) {
@@ -150,16 +157,11 @@ public class Main {
 
 			if (input == 1) {
 				int n = in.nextInt();
-				MatAug mt = new MatAug(n,n+1);
-				mt.fillUsingPI(n);
+				MatAug mt = new MatAug(n,n+2);
+				mt.fillUsingPI();
 
 				// Testing: display PI
-				for (int i=0; i<n; i++) {
-					for (int j=0; j<=n+1; j++) {
-						System.out.println(mt.get(i,j) + " ");
-					}
-					System.out.println();
-				}
+				mt.printM();
 			} else {
 				// Input From file
 			}
