@@ -41,7 +41,6 @@ public class Main {
 				if (method == 1) {
 					mt.runGaussElimination();
 				} else {
-					System.out.println("Yeay!");
 					mt.runGaussJordanElimination();
 				}
 
@@ -76,7 +75,6 @@ public class Main {
 				if (method == 1) {
 					mt.runGaussElimination();
 				} else {
-					System.out.println("Yeay!");
 					mt.runGaussJordanElimination();
 				}
 			}
@@ -130,7 +128,6 @@ public class Main {
 				if (method == 1) {
 					mt.runGaussElimination();
 				} else {
-					System.out.println("Yeay!");
 					mt.runGaussJordanElimination();
 				}
 			}

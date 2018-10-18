@@ -264,6 +264,51 @@ public class MatAug { // Matrix Augmented
 		//Testing
 		System.out.println("The result of Gauss-Jordan Elimination method: ");
 		this.printM();
+
+		byte solution = this._checkRow();
+
+		if (solution==0) // No solution
+			System.out.println("This system has no solution");
+		else if (solution==1) { // There is solution
+			char ex = 'a'; // Example
+			for (int i=this.row-1; i>=0; i--) {
+				int firstNum=-1, j=0;
+
+				while (firstNum==-1 && j<this.col-1) {
+					if (mt[i][j]!=0)
+						firstNum = j;
+					else j++;
+				}
+
+				if (firstNum!=-1) {
+					double value = mt[i][this.col-1];
+					String variable = "";
+					for (j=firstNum+1; j<this.col-1; j++) {
+						if (mt[i][j]==0) {
+							if (result[j]==null) {
+								result[j] = "" + ex;
+								ex++;
+							}
+						} else {
+							if (result[j]==null) {
+								result[j] = "" + ex;
+								ex++;
+							}
+							try {
+								double tempf = Double.parseDouble(result[j]);
+								value -= (tempf*mt[i][j]);
+							} catch (Exception e) {
+								variable += (mt[i][j]>0? " - "+mt[i][j]+"("+result[j]+")" : " + "+(mt[i][j]*(-1))+"("+result[j]+")");
+							}
+						}
+					}
+					result[firstNum] = "" + value + variable;
+				}
+			}
+			System.out.println("Solution of this system is :");
+			for (int i=0; i<this.col-1; i++)
+				System.out.println("x" + (i+1) + " = " + result[i]);
+		}
 	}
 
 	// Display Matrix Augmented
