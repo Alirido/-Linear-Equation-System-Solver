@@ -175,7 +175,7 @@ public class MatAug { // Matrix Augmented
 		if (solution==-1) // No solution
 			System.out.println("This system has no solution");
 		else if (solution==0) { // Many Solution
-			StringBuilder[] ans = new StringBuilder[this.col];
+			String[] ans = new String[this.col];
 			char ex = 'a'; // Example
 			for (int i=this.row-1; i>=0; i--) {
 				int firstNum=-1, j=0;
@@ -187,21 +187,25 @@ public class MatAug { // Matrix Augmented
 				}
 
 				if (firstNum!=-1) {
-					ans[firstNum].append("" + mt[i][this.col-1]);
+					// ans[firstNum].append("" + mt[i][this.col-1]);
+					ans[firstNum] = "" + mt[i][this.col-1];
 					System.out.println("ans[firstNum]= " + ans[firstNum]); // Debugging
 
 					for (j=firstNum+1; j<this.col-1; j++) {
 						if (mt[i][j]==0) {
 							if (ans[j]==null) {
-								ans[j].append(ex);
+								// ans[j].append(ex);
+								ans[j] = "" + ex;
 								ex++;
 							}
 						} else {
 							if (ans[j]==null) {
-								ans[j].append(ex);
+								// ans[j].append(ex);
+								ans[j] = "" + ex;
 								ex++;
 							}
-							ans[firstNum].append((mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1))));
+							// ans[firstNum].append((mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1))));
+							ans[firstNum] += (mt[i][j]>0? "-"+mt[i][j] : "+"+(mt[i][j]*(-1)));
 						}
 					}
 
