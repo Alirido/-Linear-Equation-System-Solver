@@ -101,16 +101,9 @@ public class MatAug { // Matrix Augmented
 		if (i!=j) {
 
 			double[] temp = new double[this.col+1];
-			// for (int i=0; i<)
-			for (int idx = 0; idx<this.col; idx++)
-				temp[idx] = this.mt[i][idx];
-			for (int idx = 0; idx<this.col; idx++)
-				this.mt[i][idx] = this.mt[j][idx];
-			for (int idx = 0; idx<this.col; idx++)
-				this.mt[j][idx] = temp[idx];
-			// temp = mt[i];
-			// mt[i]=mt[j];
-			// mt[j]=temp;
+			temp = mt[i];
+			mt[i]=mt[j];
+			mt[j]=temp;
 		}
 	}
 
@@ -228,11 +221,7 @@ public class MatAug { // Matrix Augmented
 					result[firstNum] = "" + value + variable;
 				}
 			}
-			// System.out.println("Solution of this system is :");
-			// for (int i=0; i<this.col-1; i++)
-			// 	System.out.println("x" + (i+1) + " = " + result[i]);
 		} 
-
 	}
 
 	public void runGaussJordanElimination() {
@@ -243,8 +232,8 @@ public class MatAug { // Matrix Augmented
 			boolean found=false;
 			while (!found && i<this.row) {
 				if (mt[i][j]!=0) {
-					this._swap(i, j);
-					this._simplify(j);
+					this._swap(i, current_row);
+					this._simplify(current_row);
 					found=true;
 				} else i++;
 			}
@@ -314,9 +303,6 @@ public class MatAug { // Matrix Augmented
 					result[firstNum] = "" + value + variable;
 				}
 			}
-			// System.out.println("Solution of this system is :");
-			// for (int i=0; i<this.col-1; i++)
-			// 	System.out.println("x" + (i+1) + " = " + result[i]);
 		}
 	}
 
@@ -346,12 +332,12 @@ public class MatAug { // Matrix Augmented
 
 	// Display Matrix Augmented
 	public void printM() {
-		// System.out.println("size: " + row + " " + col);
 		for (int i=0; i<this.row; i++) {
 			for (int j=0; j<this.col; j++)
 				System.out.print(mt[i][j] + " ");
 			System.out.println();
 		}
+		System.out.println("Size: " + row + "x" + col);
 		System.out.println();
 	}
 }
