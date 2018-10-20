@@ -1,2 +1,2 @@
 # LinearEquationSystem-Solver
-Pengaplikasian metode eliminasi Gauss dan Gauss-Jordan terhadap SPL dan perosalan interpolasi
+Mengimplementasikan metode eliminasi Gauss dan metode Eliminasi Gauss-Jordan, dan mengaplikasikannya untuk Sistem Persamaan Linier (SPL) serta persoalan interpolasi. 
